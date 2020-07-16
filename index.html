@@ -48,7 +48,7 @@
           для вашего бизнеса
         </h1>
 
-        <button class="hero-button">Заказать услугу</button>
+        <button class="hero-button" data-open-modal>Заказать услугу</button>
       </section>
       <!-- Advantages -->
       <section class="section-advantages">
@@ -372,12 +372,86 @@
           <li>
             <h3 class="footer-title">Подпишитесь на рассылку</h3>
             <div class="box-subscribe">
-              <input class="input-subscribe" type="text" />
-              <button class="button-subscribe">Подписаться</button>
+              <form class="form-subscribe js-speaker-form">
+                <input class="input-subscribe" type="email" name="mail" />
+                <label for="mail" class="button-subscribe">Подписаться</label>
+              </form>
             </div>
           </li>
         </ul>
       </div>
     </footer>
+    <!-- Modal to order -->
+    <div class="backdrop" data-backdrop>
+      <div class="modal-to-order">
+        <h2 class="modal-label">Оставьте свои данные, мы вам перезвоним</h2>
+        <form class="form js-speaker-form">
+          <div class="form-field">
+            <input class="form-input" type="text" name="name" placeholder=" " />
+            <label class="form-label" for="name">Имя</label>
+            <span></span>
+          </div>
+          <div class="form-field">
+            <input class="form-input" type="tel" name="tel" id="tel" placeholder=" " />
+            <label class="form-label" for="tel">Телефон</label>
+            <span></span>
+          </div>
+          <div class="form-field">
+            <input class="form-input" type="email" name="mail" id="mail" placeholder=" " />
+            <label class="form-label" for="mail">Почта</label>
+            <span></span>
+          </div>
+          <div class="form-field">
+            <textarea
+              class="comment"
+              name="comment"
+              id="comment"
+              rows="8"
+              placeholder=" "
+            ></textarea>
+            <label class="form-label-comment" for="comment">Коментарий</label>
+          </div>
+          <button class="modal-send">Отправить</button>
+
+          <button class="modal-close" data-close-modal>
+            <svg class="close-icon" width="18" height="18">
+              <use href="./image/symbol-defs7.svg#icon-close"></use>
+            </svg>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- <script>
+      const refs = {
+        openModalBtn: document.querySelector('[data-open-modal]'),
+        closeModalBtn: document.querySelector('[data-close-modal]'),
+        backdrop: document.querySelector('[data-backdrop]'),
+      };
+
+      refs.openModalBtn.addEventListener('click', toggleModal);
+      refs.closeModalBtn.addEventListener('click', toggleModal);
+
+      refs.backdrop.addEventListener('click', logBackdropClick);
+
+      function toggleModal() {
+        refs.backdrop.classList.toggle('is-hidden');
+      }
+
+      function logBackdropClick() {
+        console.log('Это клик в бекдроп');
+      }
+    </script> -->
+    <script>
+      (() => {
+        document.querySelector('.js-speaker-form').addEventListener('submit', e => {
+          e.preventDefault();
+
+          new FormData(e.currentTarget).forEach((value, name) => console.log(`${name}: ${value}`));
+
+          e.currentTarget.reset();
+        });
+      })();
+    </script>
   </body>
 </html>
